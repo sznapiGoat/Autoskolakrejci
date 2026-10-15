@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Galerie, type Fotka } from "@/components/galerie";
-import { Zahlavi } from "@/components/zahlavi";
+import Image from "next/image";
+import { drobecky, JsonLd } from "@/components/json-ld";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "O autoškole",
+  title: "O autoškole Rostislava Krejčího",
   description:
     "Rostislav Krejčí, majitel autoškoly a školicího střediska řidičů v Třebíči. Malá autoškola, instruktoři jsou současní nebo bývalí řidiči z povolání.",
   alternates: { canonical: "/o-autoskole" },
@@ -29,13 +30,34 @@ const FOTKY: Fotka[] = [
 export default function OAutoskole() {
   return (
     <>
-      <Zahlavi nadpis="O autoškole" />
+      <JsonLd
+        data={drobecky([
+          { nazev: "Úvod", cesta: "/" },
+          { nazev: "O autoškole", cesta: "/o-autoskole" },
+        ])}
+      />
 
-      <section className="mx-auto max-w-[1320px] px-4 pt-14 md:px-8 md:pt-20">
-        <div className="grid gap-14 lg:grid-cols-12">
-          <div className="lg:col-span-7">
-            <p className="text-[clamp(1.5rem,2.6vw,2.1rem)] font-bold leading-[1.25] tracking-[-0.01em]">
-              Učíme řídit osobní auta, přívěsy, nákladní auta, soupravy, autobusy a traktory. Skupiny B, B96, BE, C, CE, D a T.
+      <section className="mx-auto max-w-[1320px] px-4 pt-10 md:px-8 md:pt-16">
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <figure className="lg:col-span-5">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[3px] bg-line">
+              <Image
+                src="/foto/iveco-detail-kabiny.jpg"
+                alt="Kabina červeného Iveca autoškoly s tabulkou L a samolepkou s jménem Rostislav Krejčí"
+                fill
+                priority
+                sizes="(min-width: 1024px) 40vw, 100vw"
+                className="object-cover object-[62%_50%]"
+              />
+            </div>
+          </figure>
+
+          <div className="lg:col-span-7 lg:pt-4">
+            <h1 className="text-[clamp(2.4rem,5.4vw,4.4rem)] font-extrabold leading-[0.98] tracking-[-0.03em]">
+              Malá autoškola, která učí i&nbsp;velká auta
+            </h1>
+            <p className="font-display mt-8 text-[clamp(1.4rem,2.4vw,1.9rem)] font-bold leading-[1.25] tracking-[-0.01em]">
+              Osobní auta, přívěsy, nákladní auta, soupravy, autobusy a traktory. Skupiny B, B96, BE, C, CE, D a T.
             </p>
             <div className="mt-8 max-w-[60ch] space-y-5 text-lg leading-relaxed text-ink-2">
               <p>
@@ -51,15 +73,15 @@ export default function OAutoskole() {
                 podle potřeby.
               </p>
             </div>
-          </div>
 
-          <aside className="lg:col-span-4 lg:col-start-9">
-            <div className="border-t-2 border-ink pt-6">
-              <p className="text-2xl font-extrabold tracking-tight">{SITE.owner}</p>
-              <p className="mt-2 leading-relaxed text-ink-2">
-                instruktor teoretické výuky a praktického výcviku, majitel autoškoly a školicího střediska řidičů
+            <div className="mt-12 border-t-2 border-ink pt-6">
+              <p className="text-xl leading-relaxed">
+                „Přijďte nás navštívit, případně mě kontaktujte. Rád vás ve své autoškole přivítám.“
               </p>
-              <p className="mt-6 text-lg leading-relaxed">„Přijďte nás navštívit, případně mě kontaktujte. Rád vás ve své autoškole přivítám.“</p>
+              <p className="mt-3">
+                <span className="font-display text-lg font-extrabold">{SITE.owner}</span>
+                <span className="text-ink-2">, instruktor teoretické výuky a praktického výcviku, majitel autoškoly a školicího střediska řidičů</span>
+              </p>
               <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3">
                 <a href={SITE.phoneHref} className="tnum font-mono text-lg font-semibold hover:text-red">
                   {SITE.phone}
@@ -69,7 +91,7 @@ export default function OAutoskole() {
                 </Link>
               </div>
             </div>
-          </aside>
+          </div>
         </div>
       </section>
 

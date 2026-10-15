@@ -3,7 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+import { AUTOSKOLA, drobecky, JsonLd } from "@/components/json-ld";
 import { VozidloNaSilnici } from "@/components/vozidla";
+import { dotazy } from "@/lib/faq";
 import { getCenik, kc, POPLATKY } from "@/lib/cenik";
 import { SITE } from "@/lib/site";
 import { SKUPINY, skupina } from "@/lib/skupiny";
@@ -16,7 +18,7 @@ export async function generateMetadata({ params }: PageProps<"/skupiny/[id]">): 
   const s = skupina((await params).id);
   if (!s) return {};
   return {
-    title: `Řidičák skupiny ${s.kod}: ${s.nazev.toLowerCase()}`,
+    title: s.seo,
     description: `Kurz skupiny ${s.kod} v Třebíči. Od ${s.vek} let, ${s.jizdy}, zkouška: ${s.zkouska}. Výcvik na vozidle ${s.cvicneVozidlo}.`,
     alternates: { canonical: `/skupiny/${s.id}` },
   };
@@ -41,9 +43,44 @@ async function Detail({ params }: { params: PageProps<"/skupiny/[id]">["params"]
   const i = SKUPINY.findIndex((g) => g.id === s.id);
   const dalsi = SKUPINY[(i + 1) % SKUPINY.length];
   const delkaText = s.delka.toLocaleString("cs-CZ");
+  const faq = dotazy(s, cenik);
+  const nejnizsi = kurzy.length ? Math.min(...kurzy.map((k) => Number(k.price))) : null;
+
+  const ld = [
+    drobecky([
+      { nazev: "Úvod", cesta: "/" },
+      { nazev: "Skupiny", cesta: "/skupiny" },
+      { nazev: s.h1, cesta: `/skupiny/${s.id}` },
+    ]),
+    {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      name: s.seo,
+      description: s.uvod,
+      provider: AUTOSKOLA,
+      ...(nejnizsi && {
+        offers: { "@type": "Offer", price: nejnizsi, priceCurrency: "CZK", category: "Paid" },
+      }),
+      hasCourseInstance: {
+        "@type": "CourseInstance",
+        courseMode: "Onsite",
+        location: AUTOSKOLA.address,
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faq.map((d) => ({
+        "@type": "Question",
+        name: d.otazka,
+        acceptedAnswer: { "@type": "Answer", text: d.odpoved },
+      })),
+    },
+  ];
 
   return (
     <>
+      <JsonLd data={ld} />
       <header className="mx-auto max-w-[1320px] px-4 pt-10 md:px-8 md:pt-16">
         <nav aria-label="Drobečková navigace" className="font-mono text-xs text-muted">
           <Link href="/skupiny" className="hover:text-ink">
@@ -60,8 +97,11 @@ async function Detail({ params }: { params: PageProps<"/skupiny/[id]">["params"]
             </span>
             <div>
               <h1 className="text-[clamp(2.2rem,5.4vw,4.4rem)] font-extrabold leading-[0.98] tracking-[-0.03em]">
-                {s.nazev}
+                {s.h1}
               </h1>
+              <p className="mt-2 font-mono text-sm text-muted">
+                skupina {s.kod} · {s.nazev.toLowerCase()} · Třebíč
+              </p>
               <p className="mt-4 max-w-[48ch] text-lg leading-relaxed text-ink-2">{s.uvod}</p>
             </div>
           </div>
@@ -178,10 +218,31 @@ async function Detail({ params }: { params: PageProps<"/skupiny/[id]">["params"]
         </section>
       )}
 
+      <section aria-labelledby="dotazy" className="border-t border-line bg-white">
+        <div className="mx-auto grid max-w-[1320px] gap-10 px-4 py-20 md:px-8 md:py-28 lg:grid-cols-12">
+          <h2 id="dotazy" className="text-3xl font-extrabold tracking-tight md:text-4xl lg:col-span-4">
+            Na co se lidé ptají u skupiny {s.kod}
+          </h2>
+          <div className="divide-y divide-line border-y border-line lg:col-span-7 lg:col-start-6">
+            {faq.map((d) => (
+              <details key={d.otazka} className="group py-5">
+                <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 text-lg font-bold [&::-webkit-details-marker]:hidden">
+                  {d.otazka}
+                  <span aria-hidden className="font-mono text-xl font-normal text-red transition-transform group-open:rotate-45">
+                    +
+                  </span>
+                </summary>
+                <p className="mt-3 max-w-[60ch] leading-relaxed text-ink-2">{d.odpoved}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="bg-red text-white">
         <div className="mx-auto flex max-w-[1320px] flex-col gap-8 px-4 py-16 md:flex-row md:items-center md:justify-between md:px-8">
           <div>
-            <p className="text-[clamp(1.8rem,3.6vw,2.8rem)] font-extrabold leading-tight tracking-tight">Chcete skupinu {s.kod}?</p>
+            <p className="font-display text-[clamp(1.8rem,3.6vw,2.8rem)] font-extrabold leading-tight tracking-tight">Chcete skupinu {s.kod}?</p>
             <p className="mt-2 text-white/85">
               Přihláška online, na papíře nebo osobně {SITE.hours.dayShort} {SITE.hours.time}.
             </p>
@@ -201,7 +262,7 @@ async function Detail({ params }: { params: PageProps<"/skupiny/[id]">["params"]
         <Link href={`/skupiny/${dalsi.id}`} className="group flex items-center justify-between gap-6">
           <span className="font-mono text-xs text-muted">Další skupina</span>
           <span className="flex items-center gap-4">
-            <span className="text-xl font-extrabold tracking-tight group-hover:text-red md:text-2xl">{dalsi.nazev}</span>
+            <span className="font-display text-xl font-extrabold tracking-tight group-hover:text-red md:text-2xl">{dalsi.nazev}</span>
             <span className="flex h-11 min-w-11 items-center justify-center rounded-[3px] bg-plate px-2 font-mono font-bold text-white group-hover:bg-red">
               {dalsi.kod}
             </span>

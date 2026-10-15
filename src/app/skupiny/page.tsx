@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { VozidloNaSilnici } from "@/components/vozidla";
-import { Zahlavi } from "@/components/zahlavi";
+import { drobecky, JsonLd } from "@/components/json-ld";
 import { cenaSkupiny, getCenik, kc } from "@/lib/cenik";
 import { SKUPINY } from "@/lib/skupiny";
 
 export const metadata: Metadata = {
-  title: "Skupiny řidičského oprávnění",
+  title: { absolute: "Skupiny řidičského oprávnění B, BE, C, CE, D, T | Autoškola Krejčí Třebíč" },
   description:
     "Skupiny B, BE, C, CE, D a T v autoškole Krejčí v Třebíči: věk, předchozí skupina, rozsah výcviku, zkouška a cena kurzu.",
   alternates: { canonical: "/skupiny" },
@@ -19,17 +19,46 @@ export default async function Skupiny() {
 
   return (
     <>
-      <Zahlavi
-        nadpis="Skupiny řidičského oprávnění"
-        perex={
-          <>
-            Všechna vozidla jsou nakreslená ve stejném měřítku, aby byl vidět rozdíl. Podrobně skupiny upravuje §80 až §83
-            zákona č. 361/2000 Sb.
-          </>
-        }
+      <JsonLd
+        data={drobecky([
+          { nazev: "Úvod", cesta: "/" },
+          { nazev: "Skupiny", cesta: "/skupiny" },
+        ])}
       />
 
-      <section className="mx-auto max-w-[1320px] px-4 pb-24 md:px-8 md:pb-32">
+      <header className="mx-auto max-w-[1320px] px-4 pt-10 md:px-8 md:pt-16">
+        <h1 className="max-w-[14ch] text-[clamp(2.4rem,6vw,4.8rem)] font-extrabold leading-[0.98] tracking-[-0.03em]">
+          Skupiny řidičského oprávnění
+        </h1>
+        <p className="mt-6 max-w-[60ch] text-lg leading-relaxed text-ink-2">
+          Šest skupin, které u nás uděláte. Vozidla jsou nakreslená ve stejném měřítku a stojí předkem na stejné čáře, takže je
+          vidět, o kolik je autobus delší než osobák. Podrobně skupiny upravuje §80 až §83 zákona č. 361/2000 Sb.
+        </p>
+
+        {/* pravítko nad sloupcem vozidel */}
+        <div aria-hidden className="mt-14 hidden md:grid md:grid-cols-[5rem_15rem_1fr_9rem] md:gap-x-8">
+          <span className="col-start-3 relative h-8 border-b-2 border-ink">
+            {Array.from({ length: 17 }, (_, m) => (
+              <span
+                key={m}
+                className={`absolute bottom-0 w-px bg-ink ${m % 5 === 0 ? "h-3" : "h-1.5"}`}
+                style={{ left: `${((SIRKA - 2 - m * 10) / SIRKA) * 100}%` }}
+              />
+            ))}
+            {[0, 5, 10, 15].map((m) => (
+              <span
+                key={`l${m}`}
+                className="tnum absolute top-0 -translate-x-1/2 font-mono text-xs whitespace-nowrap text-muted"
+                style={{ left: `${((SIRKA - 2 - m * 10) / SIRKA) * 100}%` }}
+              >
+                {m} m
+              </span>
+            ))}
+          </span>
+        </div>
+      </header>
+
+      <section className="mx-auto max-w-[1320px] px-4 pt-6 pb-24 md:px-8 md:pt-0 md:pb-32">
         <ul>
           {SKUPINY.map((s) => {
             const cena = cenaSkupiny(cenik, s.id);
@@ -43,7 +72,7 @@ export default async function Skupiny() {
                     {s.kod}
                   </span>
                   <span>
-                    <span className="block text-xl font-extrabold tracking-tight md:text-2xl">{s.nazev}</span>
+                    <span className="font-display block text-xl font-extrabold tracking-tight md:text-2xl">{s.nazev}</span>
                     <span className="mt-0.5 block text-muted">
                       od {s.vek} let{s.podminka ? `, se ${s.podminka.replace("skupina", "skupinou")}` : ""}
                     </span>

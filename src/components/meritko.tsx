@@ -214,7 +214,7 @@ export function Meritko({ ceny }: Props) {
                     {s.kod}
                   </span>
                   <div>
-                    <p className="text-2xl font-extrabold tracking-tight md:text-3xl">{s.nazev}</p>
+                    <p className="font-display text-2xl font-extrabold tracking-tight md:text-3xl">{s.nazev}</p>
                     <p className="mt-1 text-muted">u nás: {s.cvicneVozidlo}</p>
                   </div>
                 </div>

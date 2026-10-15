@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Overpass, Overpass_Mono } from "next/font/google";
+import { Atkinson_Hyperlegible_Next, Overpass, Overpass_Mono } from "next/font/google";
 import { Hlavicka } from "@/components/hlavicka";
 import { Paticka } from "@/components/paticka";
 import { SITE } from "@/lib/site";
@@ -7,6 +7,11 @@ import "./globals.css";
 
 const overpass = Overpass({
   variable: "--font-overpass",
+  subsets: ["latin", "latin-ext"],
+});
+
+const atkinson = Atkinson_Hyperlegible_Next({
+  variable: "--font-atkinson",
   subsets: ["latin", "latin-ext"],
 });
 
@@ -36,7 +41,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="cs" className={`${overpass.variable} ${overpassMono.variable} antialiased`}>
+    <html lang="cs" className={`${overpass.variable} ${atkinson.variable} ${overpassMono.variable} antialiased`}>
       <body className="flex min-h-svh flex-col">
         <Hlavicka />
         <main className="flex-1">{children}</main>

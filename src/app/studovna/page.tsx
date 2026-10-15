@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { MojeFrame } from "@/components/moje-frame";
-import { Zahlavi } from "@/components/zahlavi";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Studovna pro žáky",
+  title: "Studovna pro žáky: učebnice, testy, jízdy",
   description:
     "Přihlášení do studovny pro žáky autoškoly Krejčí: elektronická učebnice Schroter, výuková videa, testové otázky a plánování jízd.",
   alternates: { canonical: "/studovna" },
@@ -41,12 +40,17 @@ const ODKAZY = [
 export default function Studovna() {
   return (
     <>
-      <Zahlavi
-        nadpis="Studovna"
-        perex="Pro žáky, kteří už v kurzu jsou. Heslo dostanete v autoškole. Uvnitř najdete elektronickou učebnici Schroter, výuková videa, testy, jejichž výsledky vidí instruktor, a přihlašování na jízdy."
-      />
+      <header className="border-b border-line">
+        <div className="mx-auto flex max-w-[1320px] flex-col gap-4 px-4 py-8 md:flex-row md:items-end md:justify-between md:px-8 md:py-10">
+          <h1 className="text-[clamp(2.2rem,4.6vw,3.4rem)] font-extrabold leading-none tracking-[-0.03em]">Studovna</h1>
+          <p className="max-w-[62ch] text-ink-2">
+            Pro žáky, kteří už v kurzu jsou, heslo dostanete v autoškole. Elektronická učebnice Schroter, výuková videa, testy,
+            jejichž výsledky vidí instruktor, a přihlašování na jízdy.
+          </p>
+        </div>
+      </header>
 
-      <div className="mx-auto grid max-w-[1320px] gap-16 px-4 pt-14 pb-24 md:px-8 md:pb-32 lg:grid-cols-12">
+      <div className="mx-auto grid max-w-[1320px] gap-16 px-4 pt-8 pb-24 md:px-8 md:pt-10 md:pb-32 lg:grid-cols-12">
         <section aria-label="Přihlášení do studovny" className="lg:col-span-7">
           <div className="rounded-[3px] border border-line bg-white p-2 md:p-4">
             <MojeFrame src={SITE.moje.studovna} title="Přihlášení do studovny" vyska={720} />

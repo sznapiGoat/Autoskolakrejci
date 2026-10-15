@@ -1,68 +1,87 @@
 import type { Metadata } from "next";
-import { Zahlavi } from "@/components/zahlavi";
+import { AUTOSKOLA, drobecky, JsonLd } from "@/components/json-ld";
 import { KURZY, SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Kontakt",
+  title: { absolute: "Kontakt | Autoškola Krejčí, Bráfova 16/2, Třebíč" },
   description:
-    "Autoškola Rostislav Krejčí, Bráfova 16/2, Třebíč. Telefon 608 82 08 82, e-mail autoskola@rokr.cz. Úřední hodiny ve středu 14:00 až 15:00.",
+    "Autoškola Rostislav Krejčí, Bráfova 16/2, Třebíč. Telefon 608 82 08 82, e-mail autoskola@rokr.cz. Úřední hodiny ve středu 14:00 až 15:00, jindy po domluvě.",
   alternates: { canonical: "/kontakt" },
 };
 
 export default function Kontakt() {
   return (
     <>
-      <Zahlavi
-        nadpis="Kontakt"
-        perex="S dotazy volejte nebo pište SMS. Osobně ve středu odpoledne v učebně, jindy kdykoli po domluvě."
+      <JsonLd
+        data={[
+          { "@context": "https://schema.org", ...AUTOSKOLA },
+          drobecky([
+            { nazev: "Úvod", cesta: "/" },
+            { nazev: "Kontakt", cesta: "/kontakt" },
+          ]),
+        ]}
       />
 
-      <div className="mx-auto max-w-[1320px] px-4 pt-14 pb-24 md:px-8 md:pb-32">
-        <div className="grid gap-14 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <a href={SITE.phoneHref} className="tnum block font-mono text-[clamp(2.2rem,5vw,3.6rem)] font-semibold leading-none text-red hover:text-red-deep">
-              {SITE.phone}
-            </a>
-            <p className="mt-3 text-muted">volejte nebo pište SMS</p>
+      <div className="grid lg:min-h-[calc(100svh-72px)] lg:grid-cols-2">
+        {/* Mapa přes celou výšku */}
+        <div className="relative order-2 h-[60svh] border-t border-line bg-white lg:order-1 lg:h-auto lg:border-t-0 lg:border-r">
+          <iframe
+            src={SITE.office.mapFrame}
+            title="Mapa: učebna autoškoly, Bráfova 16/2, Třebíč"
+            loading="lazy"
+            className="absolute inset-0 h-full w-full border-0"
+          />
+          <a
+            href={SITE.office.map}
+            rel="noopener"
+            className="absolute bottom-4 left-4 rounded-[3px] bg-white px-3 py-2 text-sm font-bold shadow-[0_1px_0_var(--line-strong)] hover:text-red"
+          >
+            Otevřít v Mapy.cz
+          </a>
+        </div>
 
-            <a href={SITE.emailHref} className="mt-8 block text-2xl font-bold underline decoration-line-strong underline-offset-[6px] hover:decoration-red">
-              {SITE.email}
-            </a>
-            <p className="mt-2 text-muted">případně {SITE.emailAlt}</p>
+        <div className="order-1 px-4 pt-10 pb-16 md:px-8 md:pt-16 lg:order-2 lg:px-16 lg:pb-20">
+          <h1 className="text-[clamp(2.4rem,5vw,4rem)] font-extrabold leading-[0.98] tracking-[-0.03em]">
+            Kontakt na autoškolu
+          </h1>
+          <p className="mt-4 max-w-[46ch] text-lg leading-relaxed text-ink-2">
+            S dotazy volejte nebo pište SMS. Osobně {SITE.hours.dayShort} odpoledne v učebně, jindy kdykoli po domluvě.
+          </p>
 
-            <dl className="mt-12 divide-y divide-line border-y border-line">
-              <Radek nazev="Úřední hodiny">
-                {SITE.hours.day} {SITE.hours.time}
-                <span className="block text-ink-2">{SITE.hours.teorie}, {SITE.hours.note}</span>
-              </Radek>
-              <Radek nazev="Učebna a kancelář">
-                {SITE.office.street}, {SITE.office.city}
-              </Radek>
-              <Radek nazev="Sídlo, fakturační adresa">
-                {SITE.billing.street}, {SITE.billing.city}
-              </Radek>
-              <Radek nazev="Provozovatel">
-                {SITE.owner}, IČO {SITE.ico}
-                <span className="block text-ink-2">nejsme plátci DPH</span>
-              </Radek>
-            </dl>
+          <a
+            href={SITE.phoneHref}
+            className="tnum mt-10 block font-mono text-[clamp(2.4rem,5.4vw,4.2rem)] font-semibold leading-none text-red hover:text-red-deep"
+          >
+            {SITE.phone}
+          </a>
+          <a
+            href={SITE.emailHref}
+            className="mt-6 inline-block text-2xl font-bold underline decoration-line-strong underline-offset-[6px] hover:decoration-red"
+          >
+            {SITE.email}
+          </a>
+          <p className="mt-2 text-muted">případně {SITE.emailAlt}</p>
 
-            <p className="mt-10 border-l-[3px] border-red pl-5 leading-relaxed text-ink-2">{KURZY.pristiB}</p>
-          </div>
+          <dl className="mt-12 divide-y divide-line border-y border-line">
+            <Radek nazev="Úřední hodiny">
+              {SITE.hours.day} {SITE.hours.time}
+              <span className="block font-normal text-ink-2">
+                {SITE.hours.teorie}, {SITE.hours.note}
+              </span>
+            </Radek>
+            <Radek nazev="Učebna a kancelář">
+              {SITE.office.street}, {SITE.office.city}
+            </Radek>
+            <Radek nazev="Sídlo, fakturační adresa">
+              {SITE.billing.street}, {SITE.billing.city}
+            </Radek>
+            <Radek nazev="Provozovatel">
+              {SITE.owner}, IČO {SITE.ico}
+              <span className="block font-normal text-ink-2">nejsme plátci DPH</span>
+            </Radek>
+          </dl>
 
-          <div className="lg:col-span-6 lg:col-start-7">
-            <div className="aspect-[4/3] overflow-hidden rounded-[3px] border border-line bg-white lg:aspect-auto lg:h-full lg:min-h-[520px]">
-              <iframe
-                src={SITE.office.mapFrame}
-                title="Mapa: učebna autoškoly, Bráfova 16/2, Třebíč"
-                loading="lazy"
-                className="h-full w-full border-0"
-              />
-            </div>
-            <a href={SITE.office.map} rel="noopener" className="mt-3 inline-block underline underline-offset-4 hover:text-red">
-              Otevřít v Mapy.cz
-            </a>
-          </div>
+          <p className="mt-10 border-l-[3px] border-red pl-5 leading-relaxed text-ink-2">{KURZY.pristiB}</p>
         </div>
       </div>
     </>

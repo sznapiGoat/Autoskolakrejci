@@ -35,7 +35,8 @@
   --color-glass: var(--glass);
   --color-asphalt: var(--asphalt);
 
-  --font-sans: var(--font-overpass);
+  --font-sans: var(--font-atkinson);
+  --font-display: var(--font-overpass);
   --font-mono: var(--font-overpass-mono);
 
   --ease-drive: cubic-bezier(0.22, 1, 0.36, 1);
@@ -54,9 +55,16 @@ html {
 body {
   background: var(--paper);
   color: var(--ink);
-  font-family: var(--font-overpass), system-ui, sans-serif;
+  font-family: var(--font-atkinson), system-ui, sans-serif;
   font-feature-settings: "kern", "liga";
   -webkit-font-smoothing: antialiased;
+}
+
+/* Nadpisy v Overpass (písmo silničního značení), text v Atkinson Hyperlegible */
+h1,
+h2,
+h3 {
+  font-family: var(--font-overpass), system-ui, sans-serif;
 }
 
 ::selection {

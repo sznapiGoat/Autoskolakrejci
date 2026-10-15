@@ -4,6 +4,10 @@ export type Skupina = {
   id: "b" | "t" | "be" | "c" | "d" | "ce";
   kod: string;
   nazev: string;
+  /** nadpis stránky tak, jak lidé hledají */
+  h1: string;
+  /** titulek do vyhledávání */
+  seo: string;
   vozidlo: VozidloId;
   /** čím se u nás jezdí, jen pokud to víme z fotek */
   cvicneVozidlo: string;
@@ -30,6 +34,8 @@ export const SKUPINY: Skupina[] = [
     id: "b",
     kod: "B",
     nazev: "Osobní automobil",
+    h1: "Řidičák na auto",
+    seo: "Řidičák na auto (skupina B) v Třebíči",
     vozidlo: "fabia",
     cvicneVozidlo: "Škoda Fabia",
     delka: 4.0,
@@ -56,6 +62,8 @@ export const SKUPINY: Skupina[] = [
     id: "t",
     kod: "T",
     nazev: "Traktor",
+    h1: "Řidičák na traktor",
+    seo: "Řidičák na traktor (skupina T) v Třebíči",
     vozidlo: "traktor",
     cvicneVozidlo: "traktor",
     delka: 4.2,
@@ -74,6 +82,8 @@ export const SKUPINY: Skupina[] = [
     id: "be",
     kod: "BE",
     nazev: "Osobák s přívěsem",
+    h1: "Řidičák na přívěs",
+    seo: "Řidičák na přívěs (BE a B96) v Třebíči",
     vozidlo: "octavia-privez",
     cvicneVozidlo: "Škoda Octavia s bržděným přívěsem",
     delka: 8.3,
@@ -98,6 +108,8 @@ export const SKUPINY: Skupina[] = [
     id: "c",
     kod: "C",
     nazev: "Nákladní automobil",
+    h1: "Řidičák na nákladní auto",
+    seo: "Řidičák na nákladní auto (skupina C) v Třebíči",
     vozidlo: "iveco",
     cvicneVozidlo: "Iveco EuroCargo s plachtou",
     delka: 8.6,
@@ -120,6 +132,8 @@ export const SKUPINY: Skupina[] = [
     id: "d",
     kod: "D",
     nazev: "Autobus",
+    h1: "Řidičák na autobus",
+    seo: "Řidičák na autobus (skupina D) v Třebíči",
     vozidlo: "autobus",
     cvicneVozidlo: "Irisbus",
     delka: 12.0,
@@ -141,6 +155,8 @@ export const SKUPINY: Skupina[] = [
     id: "ce",
     kod: "CE",
     nazev: "Nákladní souprava",
+    h1: "Řidičák na soupravu s přívěsem",
+    seo: "Řidičák na kamion s přívěsem (CE) v Třebíči",
     vozidlo: "iveco-privez",
     cvicneVozidlo: "Iveco s přívěsem",
     delka: 16.5,
