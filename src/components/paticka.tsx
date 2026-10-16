@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { NAV, SITE } from "@/lib/site";
-import { Znacka } from "./znacka";
+import { Logo } from "./logo";
 
 export function Paticka() {
   return (
@@ -8,7 +8,9 @@ export function Paticka() {
       <div className="mx-auto max-w-[1320px] px-4 pt-16 pb-10 md:px-8">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <Znacka inverzni />
+            <Link href="/" aria-label="Autoškola Krejčí, úvod" className="inline-block text-white">
+              <Logo varianta="kota" className="h-auto w-[280px] md:w-[300px]" />
+            </Link>
             <p className="mt-6 max-w-xs text-white/65">
               Malá autoškola a akreditované školicí středisko řidičů. Učí vás lidé, kteří sami jezdili z povolání.
             </p>
