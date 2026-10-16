@@ -45,7 +45,7 @@ export default function OAutoskole() {
                 src="/foto/iveco-detail-kabiny.jpg"
                 alt="Kabina červeného Iveca autoškoly s tabulkou L a samolepkou s jménem Rostislav Krejčí"
                 fill
-                priority
+                preload
                 sizes="(min-width: 1024px) 40vw, 100vw"
                 className="object-cover object-[62%_50%]"
               />

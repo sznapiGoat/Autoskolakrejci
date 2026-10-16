@@ -5,7 +5,7 @@ import { HeroFoto } from "@/components/hero-foto";
 import { AUTOSKOLA, JsonLd } from "@/components/json-ld";
 import { Meritko } from "@/components/meritko";
 import { cenaSkupiny, getCenik } from "@/lib/cenik";
-import { SITE } from "@/lib/site";
+import { KURZY, SITE } from "@/lib/site";
 import { SKUPINY } from "@/lib/skupiny";
 
 const ZASTAVKY: Zastavka[] = [
@@ -76,7 +76,7 @@ export default async function Home() {
             <Fakt nazev="Učebna" hodnota={SITE.office.street} />
             <Fakt nazev="Úřední hodiny" hodnota={`${SITE.hours.day} ${SITE.hours.time}`} />
             <Fakt nazev="Kurz skupiny B" hodnota={cenaB ? `od ${cenaB.toLocaleString("cs-CZ")} Kč` : "viz ceník"} />
-            <Fakt nazev="Další kurz B" hodnota="polovina prosince 2026" />
+            <Fakt nazev="Další kurz B" hodnota={KURZY.pristiBKratce} />
           </dl>
         </div>
       </section>

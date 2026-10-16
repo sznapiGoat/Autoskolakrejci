@@ -46,7 +46,7 @@ export default function Prihlaska() {
         <div className="flex flex-col justify-between rounded-[4px] bg-plate p-6 text-white md:p-8">
           <p className="font-mono text-xs text-white/70">Další klasický kurz skupiny B</p>
           <p className="font-display mt-6 text-[clamp(2rem,4vw,3.2rem)] font-extrabold leading-[1.02] tracking-tight">
-            polovina prosince 2026
+            {KURZY.pristiBKratce}
           </p>
           <p className="mt-6 leading-relaxed text-white/80">
             Přesné datum upřesníme. Nezávazně se přihlásit můžete už teď, ozveme se vám. {KURZY.prubezne}

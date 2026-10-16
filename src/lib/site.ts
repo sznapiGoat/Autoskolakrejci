@@ -1,5 +1,15 @@
+/*
+  Adresa webu: dokud web neběží na rokr.cz, bere se produkční doména z Vercelu
+  (VERCEL_PROJECT_PRODUCTION_URL), jinak by odkazy v metadatech vedly na starý web.
+*/
+const DOMENA = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+const URL_WEBU = DOMENA ? `https://${DOMENA}` : "https://www.rokr.cz";
+
+/** Vyhledávače pouštíme až na ostrou doménu, náhled na vercel.app indexovat nechceme. */
+export const INDEXOVAT = URL_WEBU.includes("rokr.cz");
+
 export const SITE = {
-  url: "https://www.rokr.cz",
+  url: URL_WEBU,
   name: "Autoškola Rostislav Krejčí",
   shortName: "Autoškola Krejčí",
   owner: "Rostislav Krejčí",
@@ -35,9 +45,16 @@ export const SITE = {
   },
 } as const;
 
-/** Termíny z úvodní stránky rokr.cz, stav k 4. 9. 2026. */
+/**
+ * Termíny z úvodní stránky rokr.cz, stav k 4. 9. 2026.
+ * Až bude přesné datum dalšího kurzu B, stačí přepsat tyhle dva řádky.
+ */
+const PRISTI_B = "polovina prosince 2026";
+const PRISTI_B_VETA = "Další klasický kurz skupiny B začne v polovině prosince 2026. Přesné datum upřesníme.";
+
 export const KURZY = {
-  pristiB: "Další klasický kurz skupiny B začne v polovině prosince 2026. Přesné datum upřesníme.",
+  pristiBKratce: PRISTI_B,
+  pristiB: PRISTI_B_VETA,
   rytmusB: "Klasické kurzy B začínají zhruba po dvou až třech měsících, individuální kdykoli po domluvě.",
   prubezne: "B96, BE, C, CE a D začínáme průběžně.",
 } as const;

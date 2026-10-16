@@ -14,7 +14,7 @@ declare global {
  * Formulář ze systému Moje autoškola. Jejich iframeResizer nastaví výšku podle obsahu,
  * výchozí výška platí, dokud skript nedoběhne.
  */
-export function MojeFrame({ src, title, vyska }: { src: string; title: string; vyska: number }) {
+export function MojeFrame({ src, title, vyska, line = false }: { src: string; title: string; vyska: number; line?: boolean }) {
   const ref = useRef<HTMLIFrameElement>(null);
   const zmen = () => {
     if (ref.current && window.iFrameResize) window.iFrameResize({ checkOrigin: false }, ref.current);
@@ -28,6 +28,7 @@ export function MojeFrame({ src, title, vyska }: { src: string; title: string; v
         title={title}
         className="block w-full border-0 bg-white"
         style={{ height: vyska }}
+        loading={line ? "lazy" : undefined}
         onLoad={zmen}
       />
       <Script src={SITE.moje.resizer} strategy="lazyOnload" onLoad={zmen} />

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AUTOSKOLA, drobecky, JsonLd } from "@/components/json-ld";
+import { Mapa } from "@/components/mapa";
 import { KURZY, SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -25,19 +26,13 @@ export default function Kontakt() {
       <div className="grid lg:min-h-[calc(100svh-72px)] lg:grid-cols-2">
         {/* Mapa přes celou výšku */}
         <div className="relative order-2 h-[60svh] border-t border-line bg-white lg:order-1 lg:h-auto lg:border-t-0 lg:border-r">
-          <iframe
-            src={SITE.office.mapFrame}
-            title="Mapa: učebna autoškoly, Bráfova 16/2, Třebíč"
-            loading="lazy"
-            className="absolute inset-0 h-full w-full border-0"
+          <Mapa
+            frame={SITE.office.mapFrame}
+            odkaz={SITE.office.map}
+            nazev="učebna autoškoly, Bráfova 16/2, Třebíč"
+            popisek="Bráfova 16/2, Třebíč"
+            className="absolute inset-0 h-full w-full"
           />
-          <a
-            href={SITE.office.map}
-            rel="noopener"
-            className="absolute bottom-4 left-4 rounded-[3px] bg-white px-3 py-2 text-sm font-bold shadow-[0_1px_0_var(--line-strong)] hover:text-red"
-          >
-            Otevřít v Mapy.cz
-          </a>
         </div>
 
         <div className="order-1 px-4 pt-10 pb-16 md:px-8 md:pt-16 lg:order-2 lg:px-16 lg:pb-20">

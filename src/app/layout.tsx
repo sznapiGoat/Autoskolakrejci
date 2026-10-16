@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Atkinson_Hyperlegible_Next, Overpass, Overpass_Mono } from "next/font/google";
 import { Hlavicka } from "@/components/hlavicka";
 import { Paticka } from "@/components/paticka";
-import { SITE } from "@/lib/site";
+import { INDEXOVAT, SITE } from "@/lib/site";
 import "./globals.css";
 
 const overpass = Overpass({
@@ -13,15 +13,21 @@ const overpass = Overpass({
 const atkinson = Atkinson_Hyperlegible_Next({
   variable: "--font-atkinson",
   subsets: ["latin", "latin-ext"],
+  // Next pro tohle písmo nemá metriky záložního fontu, záloha je proto ruční
+  adjustFontFallback: false,
+  fallback: ["system-ui", "Segoe UI", "Arial", "sans-serif"],
 });
 
 const overpassMono = Overpass_Mono({
   variable: "--font-overpass-mono",
   subsets: ["latin", "latin-ext"],
+  // jen drobné popisky a ceny, nemusí soupeřit s hero fotkou o přednostní stažení
+  preload: false,
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
+  robots: INDEXOVAT ? undefined : { index: false, follow: false },
   title: {
     default: "Autoškola Krejčí Třebíč | řidičák B, C, CE, D, T",
     template: "%s | Autoškola Krejčí Třebíč",

@@ -59,7 +59,7 @@ export function SkoleniFormular() {
         ))}
       </div>
       <div className="rounded-[3px] border border-line bg-white p-2 md:p-4">
-        <MojeFrame key={rezim.src} src={rezim.src} title={`Přihláška na školení: ${rezim.popis}`} vyska={760} />
+        <MojeFrame key={rezim.src} src={rezim.src} title={`Přihláška na školení: ${rezim.popis}`} vyska={760} line />
       </div>
     </div>
   );

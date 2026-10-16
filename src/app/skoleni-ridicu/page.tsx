@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AUTOSKOLA, drobecky, JsonLd } from "@/components/json-ld";
+import { Mapa } from "@/components/mapa";
 import { SkoleniFormular, VybratTermin } from "@/components/skoleni-prihlaska";
 import { SITE, SKOLENI_MISTA } from "@/lib/site";
 import { getTerminy, prihlaskaTerminu, type Termin } from "@/lib/terminy";
@@ -130,7 +131,7 @@ export default async function Skoleni() {
             {SKOLENI_MISTA.map((m) => (
               <div key={m.mesto}>
                 <div className="aspect-[4/3] overflow-hidden rounded-[3px] border border-line bg-paper">
-                  <iframe src={m.frame} title={`Mapa: ${m.mesto}, ${m.adresa}`} loading="lazy" className="h-full w-full border-0" />
+                  <Mapa frame={m.frame} odkaz={m.map} nazev={`${m.mesto}, ${m.adresa}`} className="h-full w-full" />
                 </div>
                 <p className="mt-3 text-xl font-bold">{m.mesto}</p>
                 <p className="text-ink-2">{m.adresa}</p>
@@ -184,7 +185,7 @@ function Radek({ t }: { t: Termin }) {
         <p className="text-lg font-bold">{t.misto}</p>
         <p className="text-white/65">
           <span>{nazev}</span>
-          {doplnek && <span className="text-white/45">, {doplnek}</span>}
+          {doplnek && <span className="text-white/60">, {doplnek}</span>}
         </p>
       </div>
       <p className="tnum text-right font-mono md:text-left">

@@ -39,7 +39,7 @@ export function HeroFoto() {
         style={{ aspectRatio: `${FOTKA.sirka} / ${FOTKA.vyska * okno}` }}
       >
         <div className="absolute inset-x-0" style={{ top: `${(-orez.horni / okno) * 100}%`, height: `${100 / okno}%` }}>
-          <Image src={FOTKA.src} alt={FOTKA.alt} fill priority sizes="100vw" className="object-cover" />
+          <Image src={FOTKA.src} alt={FOTKA.alt} fill preload sizes="100vw" className="object-cover" />
         </div>
 
         {/* technická vrstva */}

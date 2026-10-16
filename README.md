@@ -1,37 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Autoškola Krejčí Třebíč
 
-## Getting Started
+Nový web Autoškoly Rostislav Krejčí (rokr.cz). Skupiny B, BE, C, CE, D a T, školení profesních řidičů, učebna na Bráfově 16/2 v Třebíči.
 
-First, run the development server:
+## Koncept: Měřítko vozidel
+
+Autoškola neučí jen osobák, ale i nákladní auta, soupravy a autobusy. Web to ukazuje doslova: vozidla jednotlivých skupin jsou nakreslená jako SVG ve skutečném měřítku (1 jednotka = 10 cm) a stojí předkem na stejné stopčáře. Kóty a pravítka jsou prvky layoutu.
+
+- **Barvy** jsou změřené z vozového parku: červená plachty Iveca a karoserie Fabií `#C20426`, modrá tabulky L `#2C3990`.
+- **Písmo:** nadpisy Overpass (vychází z písma silničního značení), text Atkinson Hyperlegible Next, čísla a kóty Overpass Mono.
+
+## Stack
+
+Next.js 16 (App Router, Cache Components), React 19, Tailwind CSS 4, Motion. Nasazení na Vercel.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Proměnné prostředí nejsou potřeba.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Odkud se berou data
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Co | Kde | Jak se mění |
+| --- | --- | --- |
+| Ceník | `src/lib/cenik.ts` (`ZALOHA`, přepsáno z rokr.cz k 24. 8. 2026) | Ručně v kódu. Sanity (`wnd9n4sb`) se použije, jen když je v ní dokument `cenik` novější než `CENIK_V_REPU`. |
+| Termín dalšího kurzu B | `src/lib/site.ts`, konstanty `PRISTI_B` a `PRISTI_B_VETA` | Ručně, na webu se z nich skládá úvod, přihláška, kontakt i časté dotazy. |
+| Termíny školení | Moje autoškola, `src/lib/terminy.ts` | Samo. Načítají se na serveru z formuláře a obnovují se po hodině. |
+| Přihláška, studovna, přihláška na školení | iframy Moje autoškola (`rokr.moje-autoskola.cz`) | V systému Moje autoškola. |
+| Kontakty, úřední hodiny, místa školení | `src/lib/site.ts` | Ručně. |
+| Skupiny (věk, výcvik, fotky, nadpisy pro vyhledávání) | `src/lib/skupiny.ts` | Ručně. |
+| Siluety vozidel | `src/lib/tvary.ts` | Souřadnice v decimetrech. |
 
-## Learn More
+Pozor: v Sanity jsou staré ceny z dubna 2026 a texty s rozbitou diakritikou (UTF-8 uložené jako windows-1250). Načítání to opravuje, ale zdroj je potřeba opravit, než se Sanity znovu začne používat.
 
-To learn more about Next.js, take a look at the following resources:
+## Výměna fotky v hero
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Fotka je v `src/components/hero-foto.tsx`, objekt `FOTKA`. Po výměně stačí přepsat cestu, rozměry a polohu vozidla jako zlomky šířky a výšky fotky (`x0` předek, `x1` zadek, `y0` střecha, `y1` vozovka). Kóta a štítek skupiny se posunou samy.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## SEO
 
-## Deploy on Vercel
+- Titulky a nadpisy podle toho, co lidé hledají („Řidičák na autobus (skupina D) v Třebíči“).
+- Strukturovaná data: DrivingSchool, Course s cenou, FAQPage u každé skupiny, EducationEvent pro termíny školení, BreadcrumbList.
+- Obrázky pro sdílení se generují při buildu (`opengraph-image.tsx`) s kresbou vozidla.
+- Dokud web neběží na rokr.cz, má `noindex` a robots.txt zakazuje procházení. Adresa webu se bere z `VERCEL_PROJECT_PRODUCTION_URL`, po přepojení domény se indexování zapne samo.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Struktura
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# Autoskolakrejci
+```
+src/app/              stránky (/, /skupiny, /skupiny/[id], /cenik, /prihlaska, /skoleni-ridicu, /studovna, /kontakt, /o-autoskole)
+src/components/       meritko.tsx (scrollované měřítko), hero-foto.tsx, vozidla.tsx, cesta.tsx, galerie.tsx, …
+src/lib/              data a načítání (cenik, terminy, skupiny, site, faq, og, tvary)
+public/foto/          fotky vozového parku a učebny
+public/soubory/       PDF přihláška a lékařský posudek
+assets/fonts/         TTF písma pro generování obrázků pro sdílení
+docs/                 podklady pro klienta
+```

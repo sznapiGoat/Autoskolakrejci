@@ -2,7 +2,8 @@
 
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
-import { TVARY, Vozidlo } from "./vozidla";
+import { TVARY } from "@/lib/tvary";
+import { Vozidlo } from "./vozidla";
 
 export type Zastavka = { nazev: string; text: string };
 

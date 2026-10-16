@@ -14,7 +14,8 @@ import {
   type Variants,
 } from "motion/react";
 import { SKUPINY } from "@/lib/skupiny";
-import { Obrys, TVARY, Vozidlo } from "./vozidla";
+import { TVARY } from "@/lib/tvary";
+import { Obrys, Vozidlo } from "./vozidla";
 
 // Plátno v decimetrech. Všechna vozidla stojí předkem na stopčáře.
 const VB_X = -4;

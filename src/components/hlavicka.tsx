@@ -10,7 +10,12 @@ export function Hlavicka() {
   const pathname = usePathname();
   const [otevreno, setOtevreno] = useState(false);
 
-  useEffect(() => setOtevreno(false), [pathname]);
+  // Po přechodu na jinou stránku menu zavřeme. Porovnáváme během renderu, ne v efektu.
+  const [cesta, setCesta] = useState(pathname);
+  if (cesta !== pathname) {
+    setCesta(pathname);
+    setOtevreno(false);
+  }
 
   useEffect(() => {
     document.body.style.overflow = otevreno ? "hidden" : "";
