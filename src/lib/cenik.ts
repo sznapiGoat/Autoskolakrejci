@@ -124,6 +124,4 @@ export function cenaSkupiny(cenik: Cenik, id: string): number | null {
   return ceny.length ? Math.min(...ceny) : null;
 }
 
-export function kc(n: number) {
-  return `${n.toLocaleString("cs-CZ")} Kč`;
-}
+export { kc } from "./format";

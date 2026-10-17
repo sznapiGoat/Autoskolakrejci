@@ -99,12 +99,19 @@ export function VozidloNaSilnici({
   id: VozidloId;
   sirka?: number;
   className?: string;
-  popis: string;
+  /** bez popisu je kresba jen dekorace a čtečky ji přeskočí */
+  popis?: string;
 }) {
   const t = TVARY[id];
   const w = sirka ?? t.delka + 4;
   return (
-    <svg viewBox={`${t.delka + 2 - w} -38 ${w} 40`} className={className} role="img" aria-label={popis}>
+    <svg
+      viewBox={`${t.delka + 2 - w} -38 ${w} 40`}
+      className={className}
+      role={popis ? "img" : undefined}
+      aria-label={popis || undefined}
+      aria-hidden={popis ? undefined : true}
+    >
       <Vozidlo id={id} />
       <line
         x1={t.delka + 2 - w}

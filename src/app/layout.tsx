@@ -2,7 +2,9 @@ import type { Metadata, Viewport } from "next";
 import { Atkinson_Hyperlegible_Next, Overpass, Overpass_Mono } from "next/font/google";
 import { Hlavicka } from "@/components/hlavicka";
 import { Paticka } from "@/components/paticka";
-import { INDEXOVAT, SITE } from "@/lib/site";
+import { cenaSkupiny, getCenik } from "@/lib/cenik";
+import { INDEXOVAT, KURZY, SITE } from "@/lib/site";
+import { SKUPINY } from "@/lib/skupiny";
 import "./globals.css";
 
 const overpass = Overpass({
@@ -45,11 +47,14 @@ export const viewport: Viewport = {
   themeColor: "#f4f5f7",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const cenik = await getCenik();
+  const ceny = Object.fromEntries(SKUPINY.map((s) => [s.id, cenaSkupiny(cenik, s.id)]));
+
   return (
     <html lang="cs" className={`${overpass.variable} ${atkinson.variable} ${overpassMono.variable} antialiased`}>
       <body className="flex min-h-svh flex-col">
-        <Hlavicka />
+        <Hlavicka ceny={ceny} pristiB={KURZY.pristiBKratce} />
         <main className="flex-1">{children}</main>
         <Paticka />
       </body>
