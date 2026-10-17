@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Cesta, type Zastavka } from "@/components/cesta";
-import { HeroFoto } from "@/components/hero-foto";
+import { Kolona } from "@/components/kolona";
 import { AUTOSKOLA, JsonLd } from "@/components/json-ld";
 import { Meritko } from "@/components/meritko";
 import { cenaSkupiny, getCenik } from "@/lib/cenik";
@@ -39,9 +39,9 @@ export default async function Home() {
   return (
     <>
       <JsonLd data={{ "@context": "https://schema.org", ...AUTOSKOLA }} />
-      {/* Úvod */}
+      {/* Úvod: text a pod ním kolona vozového parku, i na notebooku se vejde na první obrazovku */}
       <section>
-        <div className="mx-auto max-w-[1320px] px-4 pt-10 pb-10 md:px-8 md:pt-14 md:pb-12">
+        <div className="mx-auto w-full max-w-[1320px] px-4 pt-10 pb-12 md:px-8 md:pt-14 md:pb-16">
           <h1 className="text-[clamp(2.6rem,7.2vw,6.2rem)] font-extrabold leading-[0.96] tracking-[-0.03em]">
             Řidičák v&nbsp;Třebíči.
             <br />
@@ -69,8 +69,10 @@ export default async function Home() {
           </div>
         </div>
 
-        <HeroFoto />
+        <Kolona />
+      </section>
 
+      <section aria-label="Základní údaje">
         <div className="mx-auto max-w-[1320px] px-4 pt-8 pb-16 md:px-8 md:pb-24">
           <dl className="grid grid-cols-2 gap-6 md:grid-cols-4">
             <Fakt nazev="Učebna" hodnota={SITE.office.street} />

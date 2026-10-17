@@ -85,6 +85,42 @@ h3 {
   }
 }
 
+/* Kolona v hero: sada vozidel je dvakrát za sebou, posun o polovinu = plynulá smyčka */
+@keyframes kolona {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes kolo {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.kolona-stopa {
+  animation: kolona linear infinite;
+}
+.kolo-toci {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: kolo linear infinite;
+}
+/* zastavit, když na kolonu míří myš nebo v ní je fokus, ať jde vozidlo vybrat */
+.kolona:hover .kolona-stopa,
+.kolona:hover .kolo-toci,
+.kolona:focus-within .kolona-stopa,
+.kolona:focus-within .kolo-toci {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .kolona-stopa,
+  .kolo-toci {
+    animation: none;
+  }
+}
+
 /* Číslice pro rozměry a ceny */
 .tnum {
   font-variant-numeric: tabular-nums lining-nums;

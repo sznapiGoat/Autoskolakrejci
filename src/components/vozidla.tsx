@@ -34,7 +34,7 @@ const obvod = (r: number) => 2 * Math.PI * r;
 
 export type Jizda = { prijezd: number; odjezd: number; klid: boolean };
 
-function KoloV({ x, r, jizda }: Kolo & { jizda: Jizda }) {
+function KoloV({ x, r, jizda, rychlost }: Kolo & { jizda: Jizda; rychlost?: number }) {
   // Kolo se otočí přesně o tolik, kolik vozidlo ujede.
   const stupne = (dm: number) => (dm / obvod(r)) * 360;
   const variants: Variants = jizda.klid
@@ -47,6 +47,8 @@ function KoloV({ x, r, jizda }: Kolo & { jizda: Jizda }) {
   return (
     <g transform={`translate(${x},${-r})`}>
       <motion.g variants={variants} style={{ transformBox: "fill-box", transformOrigin: "center" }}>
+        {/* při nepřetržité jízdě se kolo otočí jednou za ujetí svého obvodu */}
+        <g className={rychlost ? "kolo-toci" : undefined} style={rychlost ? { animationDuration: `${obvod(r) / rychlost}s` } : undefined}>
         <circle r={r} fill="var(--ink)" />
         <circle r={r * 0.58} fill="#c9ced6" />
         <path
@@ -55,12 +57,13 @@ function KoloV({ x, r, jizda }: Kolo & { jizda: Jizda }) {
           strokeWidth={r * 0.12}
         />
         <circle r={r * 0.17} fill="var(--ink)" />
+        </g>
       </motion.g>
     </g>
   );
 }
 
-export function Vozidlo({ id, jizda }: { id: VozidloId; jizda?: Jizda }) {
+export function Vozidlo({ id, jizda, rychlost }: { id: VozidloId; jizda?: Jizda; /** dm/s, kola se točí nepřetržitě */ rychlost?: number }) {
   const t = TVARY[id];
   const j = jizda ?? { prijezd: 0, odjezd: 0, klid: true };
   return (
@@ -80,7 +83,7 @@ export function Vozidlo({ id, jizda }: { id: VozidloId; jizda?: Jizda }) {
         <TabulkaL key={i} {...z} />
       ))}
       {t.kola.map((k, i) => (
-        <KoloV key={i} {...k} jizda={j} />
+        <KoloV key={i} {...k} jizda={j} rychlost={rychlost} />
       ))}
     </g>
   );
