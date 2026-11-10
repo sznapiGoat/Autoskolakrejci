@@ -39,9 +39,9 @@ export default async function Home() {
   return (
     <>
       <JsonLd data={{ "@context": "https://schema.org", ...AUTOSKOLA }} />
-      {/* Úvod: skutečná fotka vozového parku, přes ni text, pod ní kolona. Fotka je zatím provizorní, než dorazí nová. */}
+      {/* Úvod: skutečná fotka vozového parku přes celou první obrazovku, přes ni text. Fotka je zatím provizorní, než dorazí nová. */}
       <section>
-        <div className="relative isolate flex min-h-[78svh] items-end overflow-hidden bg-asphalt text-white md:min-h-[72svh]">
+        <div className="relative isolate flex min-h-[calc(100svh-6.25rem)] items-end overflow-hidden bg-asphalt text-white md:min-h-[calc(100svh-6.8rem)]">
           <Image
             src="/foto/cela-flotila.jpg"
             alt="Cvičná vozidla autoškoly na parkovišti: červená Fabia, stříbrná Fabia, Octavia, Iveco s plachtou a přívěsy"
@@ -79,8 +79,6 @@ export default async function Home() {
             </div>
           </div>
         </div>
-
-        <Kolona />
       </section>
 
       <section aria-label="Základní údaje">
@@ -93,6 +91,8 @@ export default async function Home() {
           </dl>
         </div>
       </section>
+
+      <Kolona />
 
       <Meritko ceny={ceny} />
 
