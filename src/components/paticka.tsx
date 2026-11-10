@@ -12,7 +12,7 @@ export function Paticka() {
               <Logo varianta="kota" className="h-auto w-[280px] md:w-[300px]" />
             </Link>
             <p className="mt-6 max-w-xs text-white/65">
-              Malá autoškola a akreditované školicí středisko řidičů. Učí vás lidé, kteří sami jezdili z povolání.
+              Malá autoškola a akreditované školicí středisko řidičů v Třebíči.
             </p>
           </div>
 

@@ -158,7 +158,7 @@ export default async function Home() {
         <div className="mx-auto grid max-w-[1320px] gap-12 px-4 py-24 md:px-8 md:py-32 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <h2 className="text-[clamp(2rem,4.2vw,3.4rem)] font-extrabold leading-[1.02] tracking-[-0.02em]">
-              Trenažér přímo v učebně
+              Trenažér
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-white/75">
               Palubní deska z Fabie, volant, pedály, řadicí páka a tři monitory. Rozjezdy, řazení a rozhled si ve městě i na
@@ -200,7 +200,7 @@ export default async function Home() {
         <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
           <div>
             <h2 className="text-[clamp(2rem,4.2vw,3.4rem)] font-extrabold leading-[1.02] tracking-[-0.02em]">
-              Jezdíte z povolání?
+              Školení řidičů
             </h2>
             <p className="mt-6 max-w-[44ch] text-lg leading-relaxed text-ink-2">
               Jsme akreditované školicí středisko. Děláme pravidelná školení profesních řidičů podle zákona 247/2000 Sb.,

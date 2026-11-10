@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     template: "%s | Autoškola Krejčí Třebíč",
   },
   description:
-    "Autoškola Rostislav Krejčí v Třebíči. Výuka a výcvik skupin B, BE, C, CE, D a T, školení profesionálních řidičů a trenažér v učebně na Bráfově ulici.",
+    "Autoškola Rostislav Krejčí v Třebíči. Výuka a výcvik skupin B, BE, C, CE, D a T, školení profesionálních řidičů. Učebna a trenažér na Bráfově ulici.",
   openGraph: {
     type: "website",
     locale: "cs_CZ",

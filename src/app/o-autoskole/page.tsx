@@ -54,7 +54,7 @@ export default function OAutoskole() {
 
           <div className="lg:col-span-7 lg:pt-4">
             <h1 className="text-[clamp(2.4rem,5.4vw,4.4rem)] font-extrabold leading-[0.98] tracking-[-0.03em]">
-              Malá autoškola, která učí i&nbsp;velká auta
+              Autoškola Rostislava Krejčího
             </h1>
             <p className="font-display mt-8 text-[clamp(1.4rem,2.4vw,1.9rem)] font-bold leading-[1.25] tracking-[-0.01em]">
               Osobní auta, přívěsy, nákladní auta, soupravy, autobusy a traktory. Skupiny B, B96, BE, C, CE, D a T.
