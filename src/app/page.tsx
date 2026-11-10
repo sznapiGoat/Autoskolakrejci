@@ -48,7 +48,7 @@ export default async function Home() {
             fill
             preload
             sizes="100vw"
-            className="-z-10 object-cover object-[68%_60%]"
+            className="-z-10 object-cover object-[62%_62%]"
           />
           <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-asphalt/90 via-asphalt/45 to-asphalt/10 md:bg-gradient-to-r md:from-asphalt/85 md:via-asphalt/45 md:to-transparent" />
           <div className="mx-auto w-full max-w-[1320px] px-4 pt-16 pb-8 md:px-8 md:pt-24 md:pb-14">
@@ -59,8 +59,8 @@ export default async function Home() {
             </h1>
             <div className="mt-6 flex flex-col gap-6 md:mt-10 md:gap-7 lg:flex-row lg:items-end lg:justify-between">
               <p className="max-w-[52ch] leading-relaxed text-white/85 md:text-lg">
-                Učíme skupiny B, BE, C, CE, D a T. Jsme malá autoškola: výcvik vede většinou přímo majitel Rostislav Krejčí,
-                který sám jezdil z povolání.
+                Kurzy na osobní auto začínají zhruba po dvou až třech měsících, individuálně kdykoli. Učíme i přívěsy,
+                nákladní auta, autobusy a traktory. Výcvik vede většinou přímo majitel Rostislav Krejčí.
               </p>
               <div className="flex shrink-0 flex-wrap items-center gap-x-7 gap-y-4">
                 <Link
@@ -89,63 +89,6 @@ export default async function Home() {
             <Fakt nazev="Kurz skupiny B" hodnota={cenaB ? `od ${cenaB.toLocaleString("cs-CZ")} Kč` : "viz ceník"} />
             <Fakt nazev="Další kurz B" hodnota={KURZY.pristiBKratce} />
           </dl>
-        </div>
-      </section>
-
-      <Kolona />
-
-      <Meritko ceny={ceny} />
-
-      {/* Malá autoškola */}
-      <section className="mx-auto max-w-[1320px] px-4 py-24 md:px-8 md:py-36">
-        <div className="grid gap-14 lg:grid-cols-12">
-          <blockquote className="lg:col-span-7">
-            <p className="font-display text-[clamp(1.8rem,3.6vw,3rem)] font-bold leading-[1.12] tracking-[-0.015em]">
-              „Jsme rozsahem malá autoškola. Výuku a&nbsp;výcvik v&nbsp;řízení provádím převážně sám.“
-            </p>
-            <footer className="mt-6 text-lg">
-              <span className="font-bold">Rostislav Krejčí</span>
-              <span className="text-muted">, majitel a instruktor</span>
-            </footer>
-          </blockquote>
-
-          <div className="lg:col-span-4 lg:col-start-9 lg:pt-3">
-            <p className="text-lg leading-relaxed text-ink-2">
-              Když je potřeba, vypomůžou kolegové. Všichni, kdo u nás učí, jsou současní nebo bývalí řidiči z povolání: osobní
-              i nákladní auta, traktory, soupravy, autobusy.
-            </p>
-            <Link href="/o-autoskole" className="mt-6 inline-block font-bold text-red underline decoration-2 underline-offset-[6px] hover:text-red-deep">
-              O autoškole
-            </Link>
-          </div>
-        </div>
-
-        <div className="mt-16 grid gap-4 md:mt-24 md:grid-cols-12">
-          <figure className="md:col-span-7">
-            <div className="relative aspect-[16/10] overflow-hidden rounded-[3px] bg-line">
-              <Image
-                src="/foto/iveco-sklopena-kabina.jpg"
-                alt="Iveco autoškoly se sklopenou kabinou, odkrytý motor"
-                fill
-                sizes="(min-width: 768px) 58vw, 100vw"
-                className="object-cover"
-              />
-            </div>
-            <figcaption className="mt-3 max-w-[52ch] text-[0.95rem] text-muted">
-              U skupin C a D je součástí zkoušky ovládání a údržba vozidla. Proto se kabina sklápí i při výcviku.
-            </figcaption>
-          </figure>
-          <figure className="md:col-span-5 md:mt-24">
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[3px] bg-line">
-              <Image
-                src="/foto/logo-na-plachte.jpg"
-                alt="Samolepka autoškoly na červeném nákladním voze: Autoškola, Rostislav Krejčí, telefon a web"
-                fill
-                sizes="(min-width: 768px) 42vw, 100vw"
-                className="object-cover object-[38%_50%]"
-              />
-            </div>
-          </figure>
         </div>
       </section>
 
@@ -205,6 +148,63 @@ export default async function Home() {
           </div>
         </div>
       </section>
+
+      {/* Malá autoškola */}
+      <section className="mx-auto max-w-[1320px] px-4 py-24 md:px-8 md:py-36">
+        <div className="grid gap-14 lg:grid-cols-12">
+          <blockquote className="lg:col-span-7">
+            <p className="font-display text-[clamp(1.8rem,3.6vw,3rem)] font-bold leading-[1.12] tracking-[-0.015em]">
+              „Jsme rozsahem malá autoškola. Výuku a&nbsp;výcvik v&nbsp;řízení provádím převážně sám.“
+            </p>
+            <footer className="mt-6 text-lg">
+              <span className="font-bold">Rostislav Krejčí</span>
+              <span className="text-muted">, majitel a instruktor</span>
+            </footer>
+          </blockquote>
+
+          <div className="lg:col-span-4 lg:col-start-9 lg:pt-3">
+            <p className="text-lg leading-relaxed text-ink-2">
+              Když je potřeba, vypomůžou kolegové. Všichni, kdo u nás učí, jsou současní nebo bývalí řidiči z povolání: osobní
+              i nákladní auta, traktory, soupravy, autobusy.
+            </p>
+            <Link href="/o-autoskole" className="mt-6 inline-block font-bold text-red underline decoration-2 underline-offset-[6px] hover:text-red-deep">
+              O autoškole
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-16 grid gap-4 md:mt-24 md:grid-cols-12">
+          <figure className="md:col-span-7">
+            <div className="relative aspect-[16/10] overflow-hidden rounded-[3px] bg-line">
+              <Image
+                src="/foto/fabia-bok.jpg"
+                alt="Červená Škoda Fabia autoškoly z boku s nápisem a střešní cedulí"
+                fill
+                sizes="(min-width: 768px) 58vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+            <figcaption className="mt-3 max-w-[52ch] text-[0.95rem] text-muted">
+              Na Fabii jezdí skupina B, na Octavii přívěsy BE, na Ivecu nákladní auta a soupravy.
+            </figcaption>
+          </figure>
+          <figure className="md:col-span-5 md:mt-24">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-[3px] bg-line">
+              <Image
+                src="/foto/logo-na-plachte.jpg"
+                alt="Samolepka autoškoly na červeném nákladním voze: Autoškola, Rostislav Krejčí, telefon a web"
+                fill
+                sizes="(min-width: 768px) 42vw, 100vw"
+                className="object-cover object-[38%_50%]"
+              />
+            </div>
+          </figure>
+        </div>
+      </section>
+
+      <Kolona />
+
+      <Meritko ceny={ceny} />
 
       {/* Školení řidičů */}
       <section className="mx-auto max-w-[1320px] px-4 py-24 md:px-8 md:py-32">
