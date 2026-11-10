@@ -161,7 +161,8 @@ export default async function Home() {
               Trenažér přímo v učebně
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-white/75">
-              Sedačka, volant, pedály a tři monitory. Rozjezdy, řazení a rozhled si vyzkoušíte dřív, než vyjedete mezi auta.
+              Palubní deska z Fabie, volant, pedály, řadicí páka a tři monitory. Rozjezdy, řazení a rozhled si ve městě i na
+              okresce vyzkoušíte dřív, než vyjedete mezi auta.
             </p>
             <p className="mt-4 leading-relaxed text-white/60">
               Doma pak pokračujete ve studovně: elektronická učebnice, výuková videa a testy, u kterých instruktor vidí, jak
@@ -174,17 +175,17 @@ export default async function Home() {
           <div className="grid grid-cols-5 gap-4 lg:col-span-8">
             <div className="relative col-span-5 aspect-[16/9] overflow-hidden rounded-[3px] bg-white/5 sm:col-span-3 sm:aspect-auto">
               <Image
-                src="/foto/trenazer.jpg"
-                alt="Trenažér v učebně: sedačka řidiče, volant a tři monitory"
+                src="/foto/trenazer-jizda.jpg"
+                alt="Žákyně za volantem trenažéru, na třech monitorech jízda městem, na displeji zařazená trojka"
                 fill
                 sizes="(min-width: 1024px) 40vw, (min-width: 640px) 60vw, 100vw"
-                className="object-cover"
+                className="object-cover object-[50%_15%]"
               />
             </div>
             <div className="relative col-span-5 aspect-[4/3] overflow-hidden rounded-[3px] bg-white/5 sm:col-span-2 sm:aspect-[3/4]">
               <Image
-                src="/foto/trenazer-projekce.jpg"
-                alt="Učebna se zatemněným oknem, projekce na plátně a trenažér"
+                src="/foto/trenazer-s-instruktorem-vyska.jpg"
+                alt="Instruktor u trenažéru ovládá výuku z klávesnice, vedle palubní deska Škody"
                 fill
                 sizes="(min-width: 1024px) 26vw, (min-width: 640px) 40vw, 100vw"
                 className="object-cover"

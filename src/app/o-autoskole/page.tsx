@@ -22,9 +22,9 @@ const FOTKY: Fotka[] = [
   { src: "/foto/fabia-u-plachty.jpg", alt: "Červená Fabie zaparkovaná vedle velkého červeného přívěsu" },
   { src: "/foto/iveco-celo.jpg", alt: "Iveco autoškoly zepředu z úhlu" },
   { src: "/foto/fabia-stribrna-privez.jpg", alt: "Stříbrná Fabie se střešní cedulí, vedle přívěs" },
-  { src: "/foto/dvur-celkovy.jpg", alt: "Dvůr s Ivecem, Fabiemi a plošinovým přívěsem" },
-  { src: "/foto/vozovy-park-fabia-iveco.jpg", alt: "Fabie před Ivecem, vedle bílý tahač" },
-  { src: "/foto/trenazer-zak.jpg", alt: "Sedačka trenažéru zezadu, před ní volant a tři monitory" },
+  { src: "/foto/trenazer-jizda.jpg", alt: "Žákyně za volantem trenažéru, na třech monitorech jízda městem" },
+  { src: "/foto/trenazer-instruktor.jpg", alt: "Instruktor spouští výuku na trenažéru, na monitorech menu Řidičský trenažér" },
+  { src: "/foto/ucebna.jpg", alt: "Učebna s dlouhým stolem, modrými židlemi, mapami a tabulemi dopravních značek" },
 ];
 
 export default function OAutoskole() {
