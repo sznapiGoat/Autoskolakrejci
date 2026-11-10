@@ -51,14 +51,14 @@ export default async function Home() {
             className="-z-10 object-cover object-[68%_60%]"
           />
           <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-asphalt/90 via-asphalt/45 to-asphalt/10 md:bg-gradient-to-r md:from-asphalt/85 md:via-asphalt/45 md:to-transparent" />
-          <div className="mx-auto w-full max-w-[1320px] px-4 pt-24 pb-10 md:px-8 md:pb-14">
-            <h1 className="max-w-[14ch] text-[clamp(2.6rem,7.2vw,6.2rem)] font-extrabold leading-[0.96] tracking-[-0.03em]">
+          <div className="mx-auto w-full max-w-[1320px] px-4 pt-16 pb-8 md:px-8 md:pt-24 md:pb-14">
+            <h1 className="max-w-[18ch] text-[clamp(2.3rem,6vw,5.2rem)] font-extrabold leading-[0.98] tracking-[-0.03em]">
               Řidičák v&nbsp;Třebíči.
               <br />
               <span className="text-white/75">Od osobáku po autobus.</span>
             </h1>
-            <div className="mt-8 flex flex-col gap-7 md:mt-10 lg:flex-row lg:items-end lg:justify-between">
-              <p className="max-w-[52ch] text-lg leading-relaxed text-white/85">
+            <div className="mt-6 flex flex-col gap-6 md:mt-10 md:gap-7 lg:flex-row lg:items-end lg:justify-between">
+              <p className="max-w-[52ch] leading-relaxed text-white/85 md:text-lg">
                 Učíme skupiny B, BE, C, CE, D a T. Jsme malá autoškola: výcvik vede většinou přímo majitel Rostislav Krejčí,
                 který sám jezdil z povolání.
               </p>
