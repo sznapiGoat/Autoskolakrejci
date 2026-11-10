@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Atkinson_Hyperlegible_Next, Overpass, Overpass_Mono } from "next/font/google";
 import { Hlavicka } from "@/components/hlavicka";
+import { Lista } from "@/components/lista";
 import { Paticka } from "@/components/paticka";
 import { cenaSkupiny, getCenik } from "@/lib/cenik";
 import { INDEXOVAT, KURZY, SITE } from "@/lib/site";
@@ -54,6 +55,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="cs" className={`${overpass.variable} ${atkinson.variable} ${overpassMono.variable} antialiased`}>
       <body className="flex min-h-svh flex-col">
+        <Lista />
         <Hlavicka ceny={ceny} pristiB={KURZY.pristiBKratce} />
         <main className="flex-1">{children}</main>
         <Paticka />
