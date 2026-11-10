@@ -39,32 +39,43 @@ export default async function Home() {
   return (
     <>
       <JsonLd data={{ "@context": "https://schema.org", ...AUTOSKOLA }} />
-      {/* Úvod: text a pod ním kolona vozového parku, i na notebooku se vejde na první obrazovku */}
+      {/* Úvod: skutečná fotka vozového parku, přes ni text, pod ní kolona. Fotka je zatím provizorní, než dorazí nová. */}
       <section>
-        <div className="mx-auto w-full max-w-[1320px] px-4 pt-10 pb-12 md:px-8 md:pt-14 md:pb-16">
-          <h1 className="text-[clamp(2.6rem,7.2vw,6.2rem)] font-extrabold leading-[0.96] tracking-[-0.03em]">
-            Řidičák v&nbsp;Třebíči.
-            <br />
-            <span className="text-red">Od osobáku po autobus.</span>
-          </h1>
-          <div className="mt-8 flex flex-col gap-7 md:mt-10 lg:flex-row lg:items-end lg:justify-between">
-            <p className="max-w-[52ch] text-lg leading-relaxed text-ink-2">
-              Učíme skupiny B, BE, C, CE, D a T. Jsme malá autoškola: výcvik vede většinou přímo majitel Rostislav Krejčí,
-              který sám jezdil z povolání.
-            </p>
-            <div className="flex shrink-0 flex-wrap items-center gap-x-7 gap-y-4">
-              <Link
-                href="/prihlaska"
-                className="inline-flex h-13 items-center rounded-[3px] bg-red px-7 text-lg font-bold text-white transition-colors hover:bg-red-deep"
-              >
-                Přihlásit se
-              </Link>
-              <a href={SITE.phoneHref} className="group text-lg">
-                <span className="text-muted">nebo zavolejte </span>
-                <span className="tnum font-mono font-semibold text-ink underline decoration-line-strong decoration-2 underline-offset-[6px] group-hover:decoration-red">
-                  {SITE.phone}
-                </span>
-              </a>
+        <div className="relative isolate flex min-h-[78svh] items-end overflow-hidden bg-asphalt text-white md:min-h-[72svh]">
+          <Image
+            src="/foto/cela-flotila.jpg"
+            alt="Cvičná vozidla autoškoly na parkovišti: červená Fabia, stříbrná Fabia, Octavia, Iveco s plachtou a přívěsy"
+            fill
+            preload
+            sizes="100vw"
+            className="-z-10 object-cover object-[68%_60%]"
+          />
+          <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-asphalt/90 via-asphalt/45 to-asphalt/10 md:bg-gradient-to-r md:from-asphalt/85 md:via-asphalt/45 md:to-transparent" />
+          <div className="mx-auto w-full max-w-[1320px] px-4 pt-24 pb-10 md:px-8 md:pb-14">
+            <h1 className="max-w-[14ch] text-[clamp(2.6rem,7.2vw,6.2rem)] font-extrabold leading-[0.96] tracking-[-0.03em]">
+              Řidičák v&nbsp;Třebíči.
+              <br />
+              <span className="text-white/75">Od osobáku po autobus.</span>
+            </h1>
+            <div className="mt-8 flex flex-col gap-7 md:mt-10 lg:flex-row lg:items-end lg:justify-between">
+              <p className="max-w-[52ch] text-lg leading-relaxed text-white/85">
+                Učíme skupiny B, BE, C, CE, D a T. Jsme malá autoškola: výcvik vede většinou přímo majitel Rostislav Krejčí,
+                který sám jezdil z povolání.
+              </p>
+              <div className="flex shrink-0 flex-wrap items-center gap-x-7 gap-y-4">
+                <Link
+                  href="/prihlaska"
+                  className="inline-flex h-13 items-center rounded-[3px] bg-red px-7 text-lg font-bold text-white transition-colors hover:bg-red-deep"
+                >
+                  Přihlásit se
+                </Link>
+                <a href={SITE.phoneHref} className="group text-lg">
+                  <span className="text-white/70">nebo zavolejte </span>
+                  <span className="tnum font-mono font-semibold text-white underline decoration-white/40 decoration-2 underline-offset-[6px] group-hover:decoration-red">
+                    {SITE.phone}
+                  </span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
