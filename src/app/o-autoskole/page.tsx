@@ -39,7 +39,7 @@ export default function OAutoskole() {
 
       <section className="mx-auto max-w-[1320px] px-4 pt-10 md:px-8 md:pt-16">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <figure className="lg:col-span-5">
+          <figure className="order-last lg:order-none lg:col-span-5">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[3px] bg-line">
               <Image
                 src="/foto/iveco-detail-kabiny.jpg"
