@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Cesta, type Zastavka } from "@/components/cesta";
+import { HeroStitky } from "@/components/hero-stitky";
 import { Kolona } from "@/components/kolona";
 import { AUTOSKOLA, JsonLd } from "@/components/json-ld";
 import { Meritko } from "@/components/meritko";
@@ -53,6 +54,16 @@ export default async function Home() {
             preload
             sizes="100vw"
             className="-z-10 object-cover object-[62%_62%]"
+          />
+          <HeroStitky
+            vozidla={(["b", "c"] as const).map((id) => {
+              const sk = skupina(id)!;
+              const poloha =
+                id === "b"
+                  ? { x0: 0.48, x1: 0.745, y0: 0.515, karta: "nahoru" as const }
+                  : { x0: 0.375, x1: 0.735, y0: 0.262, karta: "dolu" as const };
+              return { kod: sk.kod, href: `/skupiny/${id}`, nazev: sk.h1, vozidlo: sk.cvicneVozidlo, vek: sk.vek, delka: sk.delka, cena: ceny[id], ...poloha };
+            })}
           />
           <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-asphalt/90 via-asphalt/45 to-asphalt/10 md:bg-gradient-to-r md:from-asphalt/85 md:via-asphalt/45 md:to-transparent" />
           <div className="mx-auto w-full max-w-[1320px] px-4 pt-16 pb-8 md:px-8 md:pt-24 md:pb-14">
