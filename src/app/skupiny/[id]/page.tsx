@@ -100,7 +100,7 @@ async function Detail({ params }: { params: PageProps<"/skupiny/[id]">["params"]
                 {s.h1}
               </h1>
               <p className="mt-2 font-mono text-sm text-muted">
-                skupina {s.kod} · {s.nazev.toLowerCase()} · Třebíč
+                skupina {s.kod}, {s.nazev.toLowerCase()}, Třebíč
               </p>
               <p className="mt-4 max-w-[48ch] text-lg leading-relaxed text-ink-2">{s.uvod}</p>
             </div>

@@ -4,7 +4,7 @@ import { Cesta, type Zastavka } from "@/components/cesta";
 import { Kolona } from "@/components/kolona";
 import { AUTOSKOLA, JsonLd } from "@/components/json-ld";
 import { Meritko } from "@/components/meritko";
-import { cenaSkupiny, getCenik } from "@/lib/cenik";
+import { cenaSkupiny, getCenik, kc, POPLATKY } from "@/lib/cenik";
 import { dotazy, obecneDotazy } from "@/lib/faq";
 import { KURZY, SITE } from "@/lib/site";
 import { skupina, SKUPINY } from "@/lib/skupiny";
@@ -63,8 +63,8 @@ export default async function Home() {
             </h1>
             <div className="mt-6 flex flex-col gap-6 md:mt-10 md:gap-7 lg:flex-row lg:items-end lg:justify-between">
               <p className="max-w-[52ch] leading-relaxed text-white/85 md:text-lg">
-                Kurzy na osobní auto začínají zhruba každé dva až tři měsíce, individuální kdykoli po domluvě. Učíme i
-                přívěsy, nákladní auta, autobusy a traktory.
+                Kurzy na auto začínají zhruba každé dva až tři měsíce, individuální kdykoli. Učíme i přívěsy, nákladní auta,
+                autobusy a traktory.
               </p>
               <div className="flex shrink-0 flex-wrap items-center gap-x-7 gap-y-4">
                 <Link
@@ -99,12 +99,12 @@ export default async function Home() {
       {/* Cesta k řidičáku */}
       <section className="border-y border-line bg-white">
         <div className="mx-auto max-w-[1320px] px-4 py-24 md:px-8 md:py-32">
-          <div className="mb-14 flex flex-col justify-between gap-6 md:mb-20 md:flex-row md:items-end">
+          <div className="mb-14 md:mb-20">
             <h2 className="text-[clamp(2rem,4.2vw,3.4rem)] font-extrabold leading-[1.02] tracking-[-0.02em]">
               Jak se k řidičáku dostanete
             </h2>
-            <p className="max-w-[38ch] text-ink-2">
-              Správní poplatek 700 Kč platíte úřadu v den zkoušky, v ceně kurzu není.
+            <p className="mt-4 max-w-[60ch] text-ink-2">
+              Správní poplatek {kc(POPLATKY.spravni)} platíte úřadu v den zkoušky, v ceně kurzu není.
             </p>
           </div>
           <Cesta zastavky={ZASTAVKY} />
@@ -278,7 +278,7 @@ export default async function Home() {
               href="/prihlaska"
               className="inline-flex h-13 items-center justify-center rounded-[3px] bg-white px-7 text-lg font-bold text-red transition-colors hover:bg-paper"
             >
-              Online přihláška
+              Přihlásit se
             </Link>
             <a href={SITE.phoneHref} className="tnum font-mono text-2xl font-semibold underline decoration-white/40 decoration-2 underline-offset-[6px] hover:decoration-white">
               {SITE.phone}
