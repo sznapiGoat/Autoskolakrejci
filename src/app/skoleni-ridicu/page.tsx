@@ -173,6 +173,7 @@ export default async function Skoleni() {
 
 function Radek({ t }: { t: Termin }) {
   const { nazev, doplnek } = rozlozTyp(t.typ);
+  const plno = t.volno === 0;
   return (
     <li className="grid grid-cols-[1fr_auto] items-center gap-x-6 gap-y-3 border-b border-white/15 py-6 md:grid-cols-[13rem_1fr_7rem_auto] md:py-5">
       <time dateTime={t.iso} className="tnum font-mono">
@@ -189,7 +190,9 @@ function Radek({ t }: { t: Termin }) {
         </p>
       </div>
       <p className="tnum text-right font-mono md:text-left">
-        {t.volno != null ? (
+        {plno ? (
+          <span className="text-sm text-white/60">obsazeno</span>
+        ) : t.volno != null ? (
           <>
             <span className="text-xl font-semibold">{t.volno}</span>
             <span className="ml-1.5 text-sm text-white/60">{t.volno === 1 ? "místo" : t.volno >= 2 && t.volno <= 4 ? "místa" : "míst"}</span>
@@ -197,7 +200,11 @@ function Radek({ t }: { t: Termin }) {
         ) : null}
       </p>
       <div className="col-span-2 row-start-3 md:col-span-1 md:row-start-auto">
-        <VybratTermin src={prihlaskaTerminu(t.id)} popis={`Termín ${t.datum}, ${t.misto}`} />
+        {plno ? (
+          <span className="inline-flex h-11 items-center rounded-[3px] border border-white/20 px-5 font-semibold text-white/50">Obsazeno</span>
+        ) : (
+          <VybratTermin src={prihlaskaTerminu(t.id)} popis={`Termín ${t.datum}, ${t.misto}`} />
+        )}
       </div>
     </li>
   );
