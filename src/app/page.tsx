@@ -156,12 +156,12 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Vozidla */}
+      {/* Cvičná vozidla */}
       <section className="mx-auto max-w-[1320px] px-4 py-24 md:px-8 md:py-32">
         <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
-          <h2 className="text-[clamp(2rem,4.2vw,3.4rem)] font-extrabold leading-[1.02] tracking-[-0.02em]">Na čem se jezdí</h2>
+          <h2 className="text-[clamp(2rem,4.2vw,3.4rem)] font-extrabold leading-[1.02] tracking-[-0.02em]">Cvičná vozidla</h2>
           <Link href="/o-autoskole" className="font-bold text-red underline decoration-2 underline-offset-[6px] hover:text-red-deep">
-            Všechny fotky
+            Další fotky
           </Link>
         </div>
 
@@ -177,7 +177,7 @@ export default async function Home() {
               />
             </div>
             <figcaption className="mt-3 max-w-[52ch] text-[0.95rem] text-muted">
-              Skupina B jezdí na Fabii, přívěsy BE na Octavii, nákladní auta a soupravy na Ivecu, autobus na Irisbusu.
+              Škoda Fabia pro skupinu B, Octavia s přívěsem pro BE, Iveco pro C a CE, autobus Irisbus pro D.
             </figcaption>
           </figure>
           <figure className="md:col-span-5 md:mt-24">
