@@ -65,12 +65,11 @@ export default function OAutoskole() {
                 řidiče z povolání.
               </p>
               <p>
-                Všichni instruktoři, kteří u nás učí, jsou současní nebo bývalí řidiči z povolání. Mají za sebou osobní i
-                nákladní auta, traktory, jízdní soupravy a autobusy a mnoho let učí v autoškole.
+                Instruktoři jsou současní nebo bývalí řidiči z povolání: osobní i nákladní auta, traktory, soupravy a
+                autobusy.
               </p>
               <p>
-                Rozsahem jsme ale malá autoškola. Výuku i výcvik vede převážně majitel sám, kolegyně a kolegové vypomáhají
-                podle potřeby.
+                Jsme malá autoškola. Výuku i výcvik vede většinou Rostislav Krejčí, podle potřeby pomáhají kolegové.
               </p>
             </div>
 

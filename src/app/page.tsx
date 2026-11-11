@@ -63,8 +63,8 @@ export default async function Home() {
             </h1>
             <div className="mt-6 flex flex-col gap-6 md:mt-10 md:gap-7 lg:flex-row lg:items-end lg:justify-between">
               <p className="max-w-[52ch] leading-relaxed text-white/85 md:text-lg">
-                Kurzy na osobní auto začínají zhruba po dvou až třech měsících, individuálně kdykoli. Učíme i přívěsy,
-                nákladní auta, autobusy a traktory. Výcvik vede většinou přímo majitel Rostislav Krejčí.
+                Kurzy na osobní auto začínají zhruba každé dva až tři měsíce, individuální kdykoli po domluvě. Učíme i
+                přívěsy, nákladní auta, autobusy a traktory.
               </p>
               <div className="flex shrink-0 flex-wrap items-center gap-x-7 gap-y-4">
                 <Link
@@ -153,31 +153,16 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Malá autoškola */}
-      <section className="mx-auto max-w-[1320px] px-4 py-24 md:px-8 md:py-36">
-        <div className="grid gap-14 lg:grid-cols-12">
-          <blockquote className="lg:col-span-7">
-            <p className="font-display text-[clamp(1.8rem,3.6vw,3rem)] font-bold leading-[1.12] tracking-[-0.015em]">
-              „Jsme rozsahem malá autoškola. Výuku a&nbsp;výcvik v&nbsp;řízení provádím převážně sám.“
-            </p>
-            <footer className="mt-6 text-lg">
-              <span className="font-bold">Rostislav Krejčí</span>
-              <span className="text-muted">, majitel a instruktor</span>
-            </footer>
-          </blockquote>
-
-          <div className="lg:col-span-4 lg:col-start-9 lg:pt-3">
-            <p className="text-lg leading-relaxed text-ink-2">
-              Když je potřeba, vypomůžou kolegové. Všichni, kdo u nás učí, jsou současní nebo bývalí řidiči z povolání: osobní
-              i nákladní auta, traktory, soupravy, autobusy.
-            </p>
-            <Link href="/o-autoskole" className="mt-6 inline-block font-bold text-red underline decoration-2 underline-offset-[6px] hover:text-red-deep">
-              O autoškole
-            </Link>
-          </div>
+      {/* Vozidla */}
+      <section className="mx-auto max-w-[1320px] px-4 py-24 md:px-8 md:py-32">
+        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+          <h2 className="text-[clamp(2rem,4.2vw,3.4rem)] font-extrabold leading-[1.02] tracking-[-0.02em]">Na čem se jezdí</h2>
+          <Link href="/o-autoskole" className="font-bold text-red underline decoration-2 underline-offset-[6px] hover:text-red-deep">
+            Všechny fotky
+          </Link>
         </div>
 
-        <div className="mt-16 grid gap-4 md:mt-24 md:grid-cols-12">
+        <div className="mt-10 grid gap-4 md:mt-14 md:grid-cols-12">
           <figure className="md:col-span-7">
             <div className="relative aspect-[16/10] overflow-hidden rounded-[3px] bg-line">
               <Image
@@ -189,7 +174,7 @@ export default async function Home() {
               />
             </div>
             <figcaption className="mt-3 max-w-[52ch] text-[0.95rem] text-muted">
-              Na Fabii jezdí skupina B, na Octavii přívěsy BE, na Ivecu nákladní auta a soupravy.
+              Skupina B jezdí na Fabii, přívěsy BE na Octavii, nákladní auta a soupravy na Ivecu, autobus na Irisbusu.
             </figcaption>
           </figure>
           <figure className="md:col-span-5 md:mt-24">
