@@ -1,5 +1,5 @@
 import { kc, POPLATKY, type Cenik } from "./cenik";
-import { KURZY } from "./site";
+import { KURZY, SITE } from "./site";
 import type { Skupina } from "./skupiny";
 
 export type Dotaz = { otazka: string; odpoved: string };
@@ -56,4 +56,23 @@ export function dotazy(s: Skupina, cenik: Cenik): Dotaz[] {
   }
 
   return out;
+}
+
+/** Obecné dotazy, které nezávisí na skupině. Taky jen z ověřených údajů na webu. */
+export function obecneDotazy(): Dotaz[] {
+  return [
+    {
+      otazka: "Co potřebuju k přihlášce?",
+      odpoved:
+        "Přihlášku, online nebo na papíře, a posudek o zdravotní způsobilosti od svého praktického lékaře. Papíry přinesete do učebny, nebo je pošlete poštou.",
+    },
+    {
+      otazka: "Kde a kdy je výuka teorie?",
+      odpoved: `V učebně na adrese ${SITE.office.street}, ${SITE.hours.dayShort} ${SITE.hours.teorie.replace(" probíhá výuka teorie", "")}. Doma pak elektronická učebnice a testy ve studovně.`,
+    },
+    {
+      otazka: "Jak zruším domluvenou jízdu?",
+      odpoved: `Stačí se omluvit do 19:00 předchozího dne. Neomluvená jízda stojí ${kc(POPLATKY.prostoj)}.`,
+    },
+  ];
 }

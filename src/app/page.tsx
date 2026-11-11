@@ -5,8 +5,9 @@ import { Kolona } from "@/components/kolona";
 import { AUTOSKOLA, JsonLd } from "@/components/json-ld";
 import { Meritko } from "@/components/meritko";
 import { cenaSkupiny, getCenik } from "@/lib/cenik";
+import { dotazy, obecneDotazy } from "@/lib/faq";
 import { KURZY, SITE } from "@/lib/site";
-import { SKUPINY } from "@/lib/skupiny";
+import { skupina, SKUPINY } from "@/lib/skupiny";
 
 const ZASTAVKY: Zastavka[] = [
   {
@@ -35,6 +36,9 @@ export default async function Home() {
   const cenik = await getCenik();
   const ceny = Object.fromEntries(SKUPINY.map((s) => [s.id, cenaSkupiny(cenik, s.id)]));
   const cenaB = ceny.b;
+  // dotazy ke skupině B, obecné vložené před cenu kondičních jízd, ta je nejméně častá
+  const dotazyB = dotazy(skupina("b")!, cenik);
+  const faq = [...dotazyB.slice(0, 4), ...obecneDotazy(), ...dotazyB.slice(4)];
 
   return (
     <>
@@ -238,6 +242,37 @@ export default async function Home() {
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Časté dotazy */}
+      <section aria-labelledby="dotazy" className="border-t border-line bg-white">
+        <div className="mx-auto grid max-w-[1320px] gap-10 px-4 py-20 md:px-8 md:py-28 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <h2 id="dotazy" className="text-3xl font-extrabold tracking-tight md:text-4xl">
+              Časté dotazy
+            </h2>
+            <p className="mt-4 max-w-[34ch] text-ink-2">
+              K řidičáku na auto. Ostatní skupiny mají vlastní dotazy na{" "}
+              <Link href="/skupiny" className="font-semibold text-ink underline underline-offset-4 hover:text-red">
+                stránkách skupin
+              </Link>
+              .
+            </p>
+          </div>
+          <div className="divide-y divide-line border-y border-line lg:col-span-7 lg:col-start-6">
+            {faq.map((d) => (
+              <details key={d.otazka} className="group py-5">
+                <summary className="flex cursor-pointer list-none items-baseline justify-between gap-6 text-lg font-bold [&::-webkit-details-marker]:hidden">
+                  {d.otazka}
+                  <span aria-hidden className="font-mono text-xl font-normal text-red transition-transform group-open:rotate-45">
+                    +
+                  </span>
+                </summary>
+                <p className="mt-3 max-w-[60ch] leading-relaxed text-ink-2">{d.odpoved}</p>
+              </details>
+            ))}
           </div>
         </div>
       </section>
