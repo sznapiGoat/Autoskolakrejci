@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 import { Atkinson_Hyperlegible_Next, Overpass, Overpass_Mono } from "next/font/google";
 import { Hlavicka } from "@/components/hlavicka";
@@ -59,6 +60,8 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
         <Hlavicka ceny={ceny} pristiB={KURZY.pristiBKratce} />
         <main className="flex-1">{children}</main>
         <Paticka />
+        {/* návštěvnost bez cookies, proto bez cookie lišty */}
+        <Analytics />
       </body>
     </html>
   );
