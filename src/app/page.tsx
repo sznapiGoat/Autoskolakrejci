@@ -52,33 +52,36 @@ export default async function Home() {
             fill
             preload
             sizes="100vw"
-            className="-z-10 object-cover object-[62%_62%]"
+            className="-z-10 object-cover object-[62%_62%] md:object-[15%_62%]"
           />
           <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-asphalt/85 via-asphalt/35 to-transparent md:bg-gradient-to-r md:from-asphalt/60 md:via-asphalt/20 md:to-transparent" />
+          {/* text drží úzký sloupec vlevo, ať nezasahuje do vozidel na fotce */}
           <div className="mx-auto w-full max-w-[1320px] px-4 pt-16 pb-8 [text-shadow:0_1px_14px_rgba(20,22,27,0.5)] md:px-8 md:pt-24 md:pb-14">
-            <h1 className="max-w-[18ch] text-[clamp(2.3rem,6vw,5.2rem)] font-extrabold leading-[0.98] tracking-[-0.03em]">
-              Řidičák v&nbsp;Třebíči.
-              <br />
-              <span className="text-white/85">Od osobáku po autobus.</span>
-            </h1>
-            <div className="mt-6 flex flex-col gap-6 md:mt-10 md:gap-7 lg:flex-row lg:items-end lg:justify-between">
-              <p className="max-w-[52ch] leading-relaxed text-white/85 md:text-lg">
-                Kurzy na auto začínají zhruba každé dva až tři měsíce, individuální kdykoli. Učíme i přívěsy, nákladní auta,
-                autobusy a traktory.
-              </p>
-              <div className="flex shrink-0 flex-wrap items-center gap-x-7 gap-y-4">
-                <Link
-                  href="/prihlaska"
-                  className="inline-flex h-13 items-center rounded-[3px] bg-red px-7 text-lg font-bold text-white transition-colors hover:bg-red-deep [text-shadow:none]"
-                >
-                  Přihlásit se
-                </Link>
-                <a href={SITE.phoneHref} className="group text-lg">
-                  <span className="text-white/70">nebo zavolejte </span>
-                  <span className="tnum font-mono font-semibold text-white underline decoration-white/40 decoration-2 underline-offset-[6px] group-hover:decoration-red">
-                    {SITE.phone}
-                  </span>
-                </a>
+            <div className="md:max-w-[30rem] xl:max-w-[34rem]">
+              <h1 className="text-[clamp(2.3rem,4.6vw,4.2rem)] font-extrabold leading-[0.98] tracking-[-0.03em]">
+                Řidičák v&nbsp;Třebíči.
+                <br />
+                <span className="text-white/85">Od osobáku po autobus.</span>
+              </h1>
+              <div className="mt-6 flex flex-col gap-6 md:mt-8 md:gap-7">
+                <p className="max-w-[52ch] leading-relaxed text-white/85 md:text-lg">
+                  Kurzy na auto začínají zhruba každé dva až tři měsíce, individuální kdykoli. Učíme i přívěsy, nákladní auta,
+                  autobusy a traktory.
+                </p>
+                <div className="flex shrink-0 flex-wrap items-center gap-x-7 gap-y-4">
+                  <Link
+                    href="/prihlaska"
+                    className="inline-flex h-13 items-center rounded-[3px] bg-red px-7 text-lg font-bold text-white transition-colors hover:bg-red-deep [text-shadow:none]"
+                  >
+                    Přihlásit se
+                  </Link>
+                  <a href={SITE.phoneHref} className="group text-lg">
+                    <span className="text-white/70">nebo zavolejte </span>
+                    <span className="tnum font-mono font-semibold text-white underline decoration-white/40 decoration-2 underline-offset-[6px] group-hover:decoration-red">
+                      {SITE.phone}
+                    </span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
