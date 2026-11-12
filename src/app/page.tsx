@@ -183,11 +183,11 @@ export default async function Home() {
           <figure className="md:col-span-5 md:mt-24">
             <div className="relative aspect-[4/5] overflow-hidden rounded-[3px] bg-line">
               <Image
-                src="/foto/octavia-privez-be.jpg"
-                alt="Červená Škoda Octavia autoškoly zepředu z boku, s ní se jezdí s přívěsem"
+                src="/foto/octavia-tri-ctvrte.jpg"
+                alt="Červená Škoda Octavia autoškoly zezadu s tažným zařízením a střešní cedulí"
                 fill
                 sizes="(min-width: 768px) 42vw, 100vw"
-                className="object-cover object-[100%_50%]"
+                className="object-cover object-[68%_50%]"
               />
             </div>
           </figure>
